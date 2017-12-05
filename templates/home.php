@@ -42,41 +42,38 @@
     </div>
     <!-- /.row -->
     <h2 class="mb-3 mt-4 text-primary">Most Popular Articles</h2>
-    <div class="row">       
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Security Tips</h2>
-                    <p class="card-text">Security Tips for Apache HTTP ...</p>
+    <div class="row"> 
+        <?php
+            //=============================TEST===================================
+            $data=$dbh->getPopularList();
+            //var_dump($data);
+            //check for any errors first
+            
+            if($data['error']==false){
+                $popItems=$data['items'];
+                //var_dump($popItems);
+                foreach ($popItems as $item){
+                    $id=$item['page_id'];
+                    $title=$item['title'];
+                    $description=$item['description'];
+                    echo"<div class='col-md-4 mb-4'>
+            <div class='card h-100'>
+                <div class='card-body'>
+                    <h2 class='card-title'>$title</h2>
+                    <p class='card-text'>$description</p>
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">More Info</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Quick Guide to Common Attacks</h2>
-                    <p class="card-text">Security Tips for Apache HTTP Server ...</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">More Info</a>
-                </div>
-            </div>
-        </div>     
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h2 class="card-title">ASP.NET Security Best Practices</h2>
-                    <p class="card-text">Basic Security Practices for W...</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">More Info</a>
+                <div class='card-footer'>
+                    <a href='article.php?id=$id' class='btn btn-primary'>More Info</a>
                 </div>
             </div>
-        </div>        
-    </div>
+        </div>";
+                }// END OF FOREACH
+            }//END 
+            
+            
+            
+        ?>
+    </div> 
     <!-- /.row -->
 
 </div>
